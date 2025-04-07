@@ -28,7 +28,9 @@ RUN \
         npm=10.9.1-r0 \
         openssh-client=9.9_p2-r0 \
         patch=2.7.6-r10 \
-    \
+        python3=3.12.9-r0 \
+        py3-pip=24.3.1-r0 \
+     \
     && npm install \
         --no-audit \
         --no-fund \
@@ -37,12 +39,18 @@ RUN \
         --unsafe-perm \
     && npm rebuild --build-from-source @serialport/bindings-cpp \
     \
+    && pip3 install --no-cache-dir \
+        pystache \
+        requests \
+        beautifulsoup4 \
+        pinyin \
+    \
     && npm cache clear --force \
     \
     && echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
     \
     && patch -d /opt/node_modules/node-red-dashboard -p1 \
-             -i /tmp/node-red-dashboard-show-dashboard.patch \
+             -i /tmp/node-red-red-dashboard-show-dashboard.patch \
     \
     && apk del --no-cache --purge .build-dependencies \
     && rm -fr \
