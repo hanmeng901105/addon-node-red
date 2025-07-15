@@ -32,5 +32,5 @@ jobs:
         context: ./node-red
         push: ${{ github.event_name != 'pull_request' }}
         tags: |
-          ghcr.io/${{ github.repository_owner }}/node-red-python:latest
-          ghcr.io/${{ github.repository_owner }}/node-red-python:${{ github.sha }}
+          ghcr.io/hanmeng901105/node-red-python:latest
+          ghcr.io/hanmeng901105/node-red-python:${{ github.sha }}
