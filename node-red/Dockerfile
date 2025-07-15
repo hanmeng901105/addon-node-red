@@ -35,8 +35,14 @@ RUN \
         --no-update-notifier \
         --omit=dev \
         --unsafe-perm \
-    && npm rebuild --build-from-source @serialport/bindings-cpp \
+      && npm rebuild --build-from-source @serialport/bindings-cpp \
     \
+    && python3 -m venv /usr/local/pythonenv \
+    && /usr/local/pythonenv/bin/pip install --no-cache-dir \
+        pymustache \
+        requests \
+        beautifulsoup4 \
+        pinyin \
     && npm cache clear --force \
     \
     && echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
